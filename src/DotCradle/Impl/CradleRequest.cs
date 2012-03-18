@@ -131,7 +131,8 @@ namespace DotCradle.Impl
 
         private Uri BuildRequestUri(string path, IDictionary<string, string> urlParams)
         {
-            var url = string.Format("{0}://{1}:{2}{3}", _options.Secure ? "https" : "http", _options.Host, _options.Port, path);
+            var port = _options.Port > 0 ? string.Format(":{0}", _options.Port) : string.Empty;
+            var url = string.Format("{0}://{1}{2}{3}", _options.Secure ? "https" : "http", _options.Host, port, path);
 
             if (urlParams.Count > 0)
             {
