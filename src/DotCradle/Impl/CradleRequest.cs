@@ -63,6 +63,12 @@ namespace DotCradle.Impl
             request.Method = _httpVerb.ToUpper();
             request.UserAgent = string.Format(CultureInfo.InvariantCulture, "DotCradle/{0}",
                                                   System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
+
+            if (!string.IsNullOrEmpty(_options.Username) && !string.IsNullOrEmpty(_options.Password))
+            {
+                request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(Encoding.Default.GetBytes(string.Format("{0}:{1}", _options.Username, _options.Password)));
+            }
+
             if (!string.IsNullOrWhiteSpace(_data))
             {
 
