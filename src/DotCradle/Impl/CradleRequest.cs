@@ -117,10 +117,12 @@ namespace DotCradle.Impl
 
             var response = new CradleResponse
             {
+                Uri = webResponse.ResponseUri,
                 Data = content,
                 Headers = GetHeaders(webResponse.Headers),
                 StatusCode = webResponse.StatusCode,
-                StatusDescription = webResponse.StatusDescription
+                StatusDescription = webResponse.StatusDescription,
+                Method = _httpVerb
             };
             return response;
         }
